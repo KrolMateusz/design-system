@@ -1,7 +1,6 @@
 import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import Progress from './Progress'
-import MuiStack from '@mui/material/Stack'
 
 export default {
     title: 'Components/Progress',
@@ -20,4 +19,9 @@ Primary.args = {
 export const Yellow = Template.bind({})
 Yellow.args = {
     color: 'yellow'
+}
+
+export const Blur = Template.bind({})
+Blur.args = {
+    color: 'blue'
 }
