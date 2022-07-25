@@ -35,6 +35,11 @@ let theme = createTheme({
       defaultProps: {
         disableShrink: true,
       },
+      styleOverrides: {
+        circle: {
+          strokeDasharray: '30px, 200px',
+        },
+      },
     },
     MuiGrid: {
       defaultProps: {
@@ -45,7 +50,7 @@ let theme = createTheme({
           desktop: 16,
         },
       },
-    }
+    },
   },
   breakpoints: {
    values: {

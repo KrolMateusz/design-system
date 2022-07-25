@@ -10,7 +10,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build": "rollup -c",
-    "chromatic": "npx chromatic --project-token=ed2a994e37d4"
+    "chromatic": "npx chromatic --project-token=ed2a994e37d4",
+    "chromatic:accept": "yarn chromatic --auto-accept-changes"
   },
   "main": "lib/index.js",
   "module": "lib/index.esm.js",

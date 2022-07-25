@@ -8,12 +8,16 @@ export default {
     component: Progress,
 } as ComponentMeta<typeof Progress>
 
-const Template: ComponentStory<typeof Progress> = (args) => {
-    return (
-        <MuiStack direction={'row'} spacing={2}>
-            <Progress color='primary' />
-            <Progress color='yellow' />
-        </MuiStack>
-    )
+const Template: ComponentStory<typeof Progress> = (args) => <Progress {...args} />
+
+export const Primary = Template.bind({})
+Primary.args = {
+    color: 'primary',
+    variant: 'indeterminate',
+    value: 30
 }
-export const Standard = Template.bind({})
+
+export const Yellow = Template.bind({})
+Yellow.args = {
+    color: 'yellow'
+}
