@@ -21,7 +21,7 @@ Yellow.args = {
     color: 'yellow'
 }
 
-export const Blur = Template.bind({})
-Blur.args = {
+export const Blue = Template.bind({})
+Blue.args = {
     color: 'blue'
 }
