@@ -49,23 +49,23 @@ const StyledButton = styled(ButtonBase)<{ color?: string, size?: string, variant
   fontWeight: 700,
   textTransform: 'uppercase',
   color: variant === 'contained' ? theme.palette[ color! ].contrastText : theme.palette[ color! ].main,
-  border: `2px solid ${getBorderColor(variant!, color!, theme)}`,
+  border: variant === 'text' ? '' : `2px solid ${getBorderColor(variant!, color!, theme)}`,
   position: 'relative',
   transition: 'transform 0.6s cubic-bezier(0.2, 1, 0.25, 1)',
   willChange: 'transform',
-  '&::before': getShadow(theme, variant!, color!),
-  '&:hover': {
+  '&::before': variant !== 'text' && getShadow(theme, variant!, color!),
+  '&:hover': variant !== 'text' && {
     transform: 'translateX(-4px) translateY(4px)',
   },
-  '&:hover::before': {
+  '&:hover::before': variant !== 'text' && {
     transform: 'translateX(2px) translateY(-2px)',
   },
   '&:disabled': {
-    backgroundColor: theme.palette.action.disabledBackground,
-    border: `2px solid ${theme.palette.action.disabledBackground}`,
+    backgroundColor: variant !== 'text' && theme.palette.action.disabledBackground,
+    border: variant !== 'text' && `2px solid ${theme.palette.action.disabledBackground}`,
     color: theme.palette.action.disabled
   },
-  '&:disabled::before': {
+  '&:disabled::before': variant !== 'text' && {
     boxShadow: theme.elevation.disabled.main
   }
 }));

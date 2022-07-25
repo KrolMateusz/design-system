@@ -13,7 +13,7 @@ export default {
     },
     variant: {
       control: 'select',
-      options: ['contained', 'outlined' ]
+      options: ['contained', 'outlined', 'text' ]
     },
     size: {
       control: 'select',
@@ -22,9 +22,13 @@ export default {
   }
 } as Meta;
 
-// Create a master template for mapping args to render the Button component
 const Template: Story = (args) => <Button {...args}>Button</Button>;
 
-// Reuse that template for creating different stories
-export const Primary = Template.bind({});
-Primary.args = { variant: 'contained', color: 'primary', size: 'large', disabled: true };
+export const Contained = Template.bind({});
+Contained.args = { variant: 'contained', color: 'yellow', size: 'large', disabled: false };
+
+export const Outlined = Template.bind({});
+Outlined.args = { variant: 'outlined', color: 'yellow', size: 'large', disabled: false };
+
+export const Text = Template.bind({});
+Text.args = { variant: 'text', color: 'yellow', size: 'large', disabled: false };
