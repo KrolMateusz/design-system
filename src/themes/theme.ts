@@ -1,5 +1,25 @@
 import { createTheme } from '@mui/material/styles'
 
+declare module '@mui/material/styles' {
+  interface BreakpointOverrides {
+    xs: false;
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+    mobileSmall: true;
+    mobile: true;
+    mobileBig: true;
+    tablet: true;
+    tabletBig: true;
+    desktopSmall: true;
+    desktop: true;
+    desktopMedium: true;
+    desktopBig: true;
+    desktopFull: true;
+  }
+}
+
 const elevationHover = '-2px 2px 0px'
 const elevationMain = '-4px 4px 0px'
 
@@ -11,6 +31,35 @@ let theme = createTheme({
         disableRipple: true,
       },
     },
+    MuiCircularProgress: {
+      defaultProps: {
+        disableShrink: true,
+      },
+    },
+    MuiGrid: {
+      defaultProps: {
+        columnSpacing: defaultTheme.spacing(2),
+        columns: {
+          mobileSmall: 4,
+          desktopSmall: 8,
+          desktop: 16,
+        },
+      },
+    }
+  },
+  breakpoints: {
+   values: {
+    mobileSmall: 0,
+    mobile: 320,
+    mobileBig: 480,
+    tablet: 768,
+    tabletBig: 992,
+    desktopSmall: 1024,
+    desktop: 1200,
+    desktopMedium: 1440,
+    desktopBig: 1580,
+    desktopFull: 1920,
+   }, 
   },
   palette: {
     primary: {
@@ -121,6 +170,32 @@ theme = createTheme(theme, {
       main: `${elevationMain} ${theme.palette.action.disabled}`
     }
   },
+})
+
+theme = createTheme(theme, {
+  components: {
+    MuiGrid: {
+      styleOverrides: {
+        container: ({ ownerState, theme }) => ({
+          [theme.breakpoints.up('smallMobile')]: {
+            margin: `${theme.spacing(0)} ${theme.spacing(2.5)}`
+          },
+          [theme.breakpoints.up('tablet')]: {
+            margin: `${theme.spacing(0)} ${theme.spacing(5)}`
+          },
+          [theme.breakpoints.up('desktopSmall')]: {
+            margin: `${theme.spacing(0)} ${theme.spacing(6)}`
+          },
+          [theme.breakpoints.up('desktop')]: {
+            margin: `${theme.spacing(0)} ${theme.spacing(5)}`
+          },
+          [theme.breakpoints.up('desktopMedium')]: {
+            margin: `auto ${theme.spacing(0)}`
+          },
+        })
+      }
+    }
+  }
 })
 
 export default theme;

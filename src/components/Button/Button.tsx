@@ -12,7 +12,7 @@ const getBorderColor = (variant: string, color: string, theme: Theme) => {
   return theme.palette[ color ].main
 }
 
-const getShadow = (theme: Theme, variant: string) => {
+const getShadow = (theme: Theme, variant: string, color: string) => {
   if (variant === 'contained') {
     return {
       content: '""',
@@ -53,7 +53,7 @@ const StyledButton = styled(ButtonBase)<{ color?: string, size?: string, variant
   position: 'relative',
   transition: 'transform 0.6s cubic-bezier(0.2, 1, 0.25, 1)',
   willChange: 'transform',
-  '&::before': getShadow(theme, variant!),
+  '&::before': getShadow(theme, variant!, color!),
   '&:hover': {
     transform: 'translateX(-4px) translateY(4px)',
   },
