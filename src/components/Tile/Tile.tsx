@@ -8,7 +8,40 @@ import MuiStack from '@mui/material/Stack'
 import MuiBox from '@mui/material/Box'
 import Tag from '../Tag'
 
+export interface TileProps extends MuiCardProps {
+    /**
+      * Title to display in Tile
+    */
+    title: string;
+
+    /**
+      * Description to display in Tile
+    */
+    description?: string;
+
+    /**
+      * Description to display in Tile
+    */
+    tags: string[];
+
+    /**
+      * Description to display in Tile
+    */
+    image: string;
+
+    /**
+      * Description to display in Tile
+    */
+    alt: string;
+
+    /**
+      * Description to display in Tile
+    */
+    type?: 'case study' | 'article';
+}
+
 const StyledMuiCard = styled(MuiCard)(({ theme }) => ({
+    position: 'relative',
     boxShadow: theme.shadows[ 0 ],
     border: '3px solid #242424',
     borderRadius: 0,
@@ -16,6 +49,7 @@ const StyledMuiCard = styled(MuiCard)(({ theme }) => ({
     '&:hover': {
       transform: 'translate3d(6px, -6px, 0)',
     },
+    overflow: 'visible'
 }))
 
 const StyledMuiCardMedia = styled(MuiCardMedia)(({ theme }) => ({
@@ -26,34 +60,46 @@ const StyledMuiBox = styled(MuiBox)(({ theme }) => ({
     backgroundColor: theme.palette.primary.main,
 }))
 
-const StyledTag = styled(Tag)({
-    backgroundColor: 'red',
-})
+const StyledTag = styled(Tag)(({ theme }) => ({
+    marginBottom: theme.spacing(1),
+    marginRight: theme.spacing(1),
+}))
 
-const Tile = ({ children, ...props }: MuiCardProps) => {
+const StyledTileType = styled(Tag)<Pick<TileProps, 'type'>>(({ theme, type }) => ({
+    backgroundColor: type === 'case study' ? theme.palette.primary.main : theme.palette.blue.main,
+    color: type === 'case study' ? theme.palette.primary.contrastText : theme.palette.blue.contrastText,
+    textTransform: 'uppercase',
+    width: 'max-content',
+    position: 'absolute',
+    top: theme.spacing(1.5),
+    left: `-${theme.spacing(1.125)}`,
+}))
+
+const Tile = ({ children, title, description, tags, image, alt,  type, ...props }: TileProps) => {
   return (
     <StyledMuiBox>
-        <StyledMuiCard {...props} sx={{ maxWidth: 345 }}>
+        <StyledMuiCard {...props} sx={{ maxWidth: 450 }}>
             <StyledMuiCardMedia
                 component='img'
-                image='https://mui.com/static/images/cards/contemplative-reptile.jpg'
-                alt='green iguana'
+                image={image}
+                alt={alt}
             />
             <MuiCardContent>
                 <MuiTypography gutterBottom variant="h5" component="div">
-                    Lizard
+                    {title}
                 </MuiTypography>
-                <MuiTypography variant="body2">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                    species, ranging across all continents except Antarctica
-                </MuiTypography>
-                <MuiStack mt={2} spacing={1} direction={'row'}>
-                    <Tag>#tag</Tag>
-                    <Tag>#tag</Tag>
-                    <Tag>#tag</Tag>
+                {description && (
+                    <MuiTypography variant="body1">
+                        {description}
+                    </MuiTypography>
+                )}
+                <MuiStack mt={2} direction={'row'} sx={{ flexWrap: 'wrap' }}>
+                    {tags.map((tag) => <StyledTag>{tag}</StyledTag>)}
                 </MuiStack>
             </MuiCardContent>
-            <StyledTag>case study</StyledTag>
+            {type && (
+                <StyledTileType>{type}</StyledTileType>
+            )}
         </StyledMuiCard>
     </StyledMuiBox>
   )

@@ -5,8 +5,10 @@ const StyledTag = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.yellow.main,
     color: theme.palette.primary.main,
     textTransform: 'uppercase',
+    fontSize: '12px',
+    lineHeight: '16px',
+    fontWeight: 700,
     padding: '6px 10px',
-    fontWeight: 'bold',
     transition: 'all 0.6s cubic-bezier(0.2, 1, 0.25, 1)',
     transitionProperty: 'color, background-color',
     '&:hover': {

@@ -1,12 +1,16 @@
 {
   "name": "design-system",
   "version": "1.0.0",
-  "author": "Mateusz Król <mateusz.krol@boldare.com>",
+  "author": {
+    "name": "Mateusz Król",
+    "email": "mateusz.krol@boldare.com"
+  },
   "license": "MIT",
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "chromatic": "npx chromatic --project-token=ed2a994e37d4"
   },
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -37,6 +41,7 @@
     "@storybook/testing-library": "^0.0.13",
     "@types/react": "^18.0.15",
     "babel-loader": "^8.2.5",
+    "chromatic": "^6.7.1",
     "postcss": "^8.4.14",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -50,12 +55,14 @@
   "peerDependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
+    "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.0",
     "@mui/styled-engine-sc": "^5.8.0",
-    "@mui/icons-material": "^5.8.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "styled-components": "^5.3.5"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "readme": "ERROR: No README data found!",
+  "_id": "design-system@1.0.0"
 }
