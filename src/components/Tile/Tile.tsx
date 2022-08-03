@@ -70,17 +70,31 @@ const StyledTag = styled(Tag)(({ theme }) => ({
   marginRight: theme.spacing(1),
 }))
 
-const StyledTileType = styled(Tag)<Pick<TileProps, 'type'>>(({ theme, type }) => ({
+const StyledTileType = styled('div')<Pick<TileProps, 'type'>>(({ theme, type }) => ({
   backgroundColor: type === 'case study' ? theme.palette.primary.main : theme.palette.blue.main,
   color: type === 'case study' ? theme.palette.primary.contrastText : theme.palette.blue.contrastText,
   textTransform: 'uppercase',
+  fontSize: '12px',
+  lineHeight: '16px',
+  fontWeight: 700,
+  padding: '6px 10px',
+  transition: 'all 0.6s cubic-bezier(0.2, 1, 0.25, 1)',
+  transitionProperty: 'color, background-color',
   width: 'max-content',
   position: 'absolute',
   top: theme.spacing(1.5),
   left: `-${theme.spacing(1.125)}`,
+  '&:hover': {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+  },
 }))
 
-const Tile = ({ children, title, description, tags, image, alt, type, icon, ...props }: TileProps) => {
+const StyleMuiStack = styled(MuiStack)(({ theme }) => ({
+  gap: theme.spacing(1)
+}))
+
+const Tile = ({ title, description, tags, image, alt, type, icon, ...props }: TileProps) => {
   return (
     <StyledMuiBox>
       <StyledMuiCard
@@ -102,7 +116,7 @@ const Tile = ({ children, title, description, tags, image, alt, type, icon, ...p
             {title}
           </MuiTypography>
           {description && <MuiTypography variant='body1'>{description}</MuiTypography>}
-          <MuiStack
+          <StyleMuiStack
             mt={2}
             direction={'row'}
             sx={{ flexWrap: 'wrap' }}
@@ -110,7 +124,7 @@ const Tile = ({ children, title, description, tags, image, alt, type, icon, ...p
             {tags.map((tag) => (
               <StyledTag key={tag}>{tag}</StyledTag>
             ))}
-          </MuiStack>
+          </StyleMuiStack>
         </MuiCardContent>
         {type && <StyledTileType type={type}>{type}</StyledTileType>}
       </StyledMuiCard>
