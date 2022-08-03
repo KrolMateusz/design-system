@@ -25,8 +25,6 @@ export default {
 
 const Template: ComponentStory<typeof Button> = (args: ButtonProps) => (
   <Button
-    startIcon={<SendIcon />}
-    endIcon={<DeleteIcon />}
     {...args}
   >
     Large
@@ -36,8 +34,26 @@ const Template: ComponentStory<typeof Button> = (args: ButtonProps) => (
 export const Contained = Template.bind({})
 Contained.args = { variant: 'contained', color: 'yellow', size: 'large', disabled: false }
 
-export const Outlined = Template.bind({})
-Outlined.args = { variant: 'outlined', color: 'yellow', size: 'large', disabled: false }
+export const ContainedWithStartIcon = Template.bind({})
+ContainedWithStartIcon.args = { variant: 'contained', color: 'yellow', size: 'large', disabled: false, startIcon: <SendIcon /> }
+
+export const ContainedWithEndIcon = Template.bind({})
+ContainedWithEndIcon.args = { variant: 'contained', color: 'yellow', size: 'large', disabled: false, endIcon: <DeleteIcon /> }
+
+export const ContainedWithIcons = Template.bind({})
+ContainedWithIcons.args = { variant: 'contained', color: 'yellow', size: 'large', disabled: false, startIcon: <SendIcon />, endIcon: <DeleteIcon /> }
+
+// export const Outlined = Template.bind({})
+// Outlined.args = { variant: 'outlined', color: 'yellow', size: 'large', disabled: false }
 
 export const Text = Template.bind({})
 Text.args = { variant: 'text', color: 'yellow', size: 'large', disabled: false }
+
+export const TextWithStartIcon = Template.bind({})
+TextWithStartIcon.args = { variant: 'text', color: 'yellow', size: 'large', disabled: false, startIcon: <SendIcon /> }
+
+export const TextWithEndIcon = Template.bind({})
+TextWithEndIcon.args = { variant: 'text', color: 'yellow', size: 'large', disabled: false, endIcon: <DeleteIcon /> }
+
+export const TextWithIcons = Template.bind({})
+TextWithIcons.args = { variant: 'text', color: 'yellow', size: 'large', disabled: false, startIcon: <SendIcon />, endIcon: <DeleteIcon /> }

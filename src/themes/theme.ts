@@ -1,5 +1,4 @@
 import { createTheme, PaletteColor } from '@mui/material/styles'
-import TTCommons from '../fonts/TT-Commons-Regular.woff'
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -42,20 +41,20 @@ const elevationMain = '-4px 4px 0px'
 
 const defaultTheme = createTheme()
 let theme = createTheme({
-  typography: {
-    fontFamily: 'TT Commons',
-  },
+  // typography: {
+  //   fontFamily: 'TT Commons',
+  // },
   components: {
-    MuiCssBaseline: {
-      styleOverrides: `
-        @font-face {
-          font-family: 'TT Commons';
-          src: ${TTCommons} format('woff');
-          font-weight: 400;
-          font-style: normal;
-        }
-      `,
-    },
+    // MuiCssBaseline: {
+    //   styleOverrides: `
+    //     @font-face {
+    //       font-family: 'TT Commons';
+    //       src: ${TTCommons} format('woff');
+    //       font-weight: 400;
+    //       font-style: normal;
+    //     }
+    //   `,
+    // },
     MuiButtonBase: {
       defaultProps: {
         disableRipple: true,
