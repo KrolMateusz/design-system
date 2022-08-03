@@ -1,30 +1,81 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import MuiSelect, { SelectChangeEvent } from '@mui/material/Select'
+import MuiFormHelperText from '@mui/material/FormHelperText'
+import MuiBox from '@mui/material/Box'
+import MuiSvgIcon from '@mui/material/SvgIcon'
 
-const Select = (props) => {
-  const [age, setAge] = useState('')
+export interface SelectOptions {
+  label: string
+  value: string | number
+}
+
+export interface SelectProps {
+  options: SelectOptions[]
+  label: string
+  size?: 'small' | 'medium'
+  variant?: 'filled' | 'outlined' | 'standard'
+  disabled?: boolean
+  error?: boolean
+  helperText?: string
+  icon?: React.ReactNode
+  onChange: (value: string | number) => void
+}
+
+const Select = ({ label, options, size, disabled, error, helperText, icon, onChange, ...props }: SelectProps) => {
+  const [state, setState] = useState('')
+
+  useEffect(() => {
+    onChange(state)
+  }, [state])
 
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string)
+    setState(event.target.value as string)
+  }
+  const selectIconProps = {
+    notched: true,
+    displayEmpty: true,
+    renderValue: (value: string) => {
+      return (
+        <MuiBox sx={{ display: 'flex', gap: 1 }}>
+          <MuiSvgIcon color='primary'>{icon}</MuiSvgIcon>
+          {value}
+        </MuiBox>
+      )
+    },
   }
   return (
-    <FormControl sx={{ m: 1, minWidth: 120 }}>
-      <InputLabel id='demo-simple-select-label'>Age</InputLabel>
+    <FormControl
+      sx={{ minWidth: 120 }}
+      size={size}
+      disabled={disabled}
+      error={error}
+    >
+      <InputLabel
+        {...(icon ? { shrink: true } : {})}
+        id={label}
+      >
+        {label}
+      </InputLabel>
       <MuiSelect
         {...props}
-        labelId='demo-simple-select-label'
-        id='demo-simple-select'
-        value={age}
-        label='Age'
+        {...(icon ? selectIconProps : {})}
+        labelId={label}
+        label={label}
         onChange={handleChange}
       >
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        {options.map(({ label, value }) => (
+          <MenuItem
+            key={value}
+            value={value}
+          >
+            {label}
+          </MenuItem>
+        ))}
       </MuiSelect>
+      {helperText && <MuiFormHelperText>{helperText}</MuiFormHelperText>}
     </FormControl>
   )
 }

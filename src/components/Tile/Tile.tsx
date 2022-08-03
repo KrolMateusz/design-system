@@ -108,7 +108,7 @@ const Tile = ({ children, title, description, tags, image, alt, type, icon, ...p
             sx={{ flexWrap: 'wrap' }}
           >
             {tags.map((tag) => (
-              <StyledTag>{tag}</StyledTag>
+              <StyledTag key={tag}>{tag}</StyledTag>
             ))}
           </MuiStack>
         </MuiCardContent>
