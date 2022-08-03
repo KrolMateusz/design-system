@@ -6,8 +6,8 @@ import ArrowForwardSharpIcon from '@mui/icons-material/ArrowForwardSharp'
 const StyledLink = styled(MuiLink)({
   position: 'relative',
   '&:hover': {
-      cursor: 'pointer'
-  }
+    cursor: 'pointer',
+  },
 })
 
 const StyledArrowForwardSharpIcon = styled(ArrowForwardSharpIcon)(({ theme }) => ({
@@ -15,12 +15,15 @@ const StyledArrowForwardSharpIcon = styled(ArrowForwardSharpIcon)(({ theme }) =>
   fontSize: '0.875em',
   marginLeft: theme.spacing(0.25),
   top: '50%',
-  transform: 'translateY(-50%)'
+  transform: 'translateY(-50%)',
 }))
 
-const Link = ({ children, ...props }: MuiLinkProps) => {
+const Link = ({ children, href }: MuiLinkProps) => {
   return (
-    <StyledLink>{ children }<StyledArrowForwardSharpIcon /></StyledLink>
+    <StyledLink href={href}>
+      {children}
+      <StyledArrowForwardSharpIcon />
+    </StyledLink>
   )
 }
 
