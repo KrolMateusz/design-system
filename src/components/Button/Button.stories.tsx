@@ -23,25 +23,38 @@ export default {
   },
 } as ComponentMeta<typeof Button>
 
-const Template: ComponentStory<typeof Button> = (args: ButtonProps) => (
-  <Button
-    {...args}
-  >
-    Large
-  </Button>
-)
+const Template: ComponentStory<typeof Button> = (args: ButtonProps) => <Button {...args}>Large</Button>
 
 export const Contained = Template.bind({})
 Contained.args = { variant: 'contained', color: 'yellow', size: 'large', disabled: false }
 
 export const ContainedWithStartIcon = Template.bind({})
-ContainedWithStartIcon.args = { variant: 'contained', color: 'yellow', size: 'large', disabled: false, startIcon: <SendIcon /> }
+ContainedWithStartIcon.args = {
+  variant: 'contained',
+  color: 'yellow',
+  size: 'large',
+  disabled: false,
+  startIcon: <SendIcon />,
+}
 
 export const ContainedWithEndIcon = Template.bind({})
-ContainedWithEndIcon.args = { variant: 'contained', color: 'yellow', size: 'large', disabled: false, endIcon: <DeleteIcon /> }
+ContainedWithEndIcon.args = {
+  variant: 'contained',
+  color: 'yellow',
+  size: 'large',
+  disabled: false,
+  endIcon: <DeleteIcon />,
+}
 
 export const ContainedWithIcons = Template.bind({})
-ContainedWithIcons.args = { variant: 'contained', color: 'yellow', size: 'large', disabled: false, startIcon: <SendIcon />, endIcon: <DeleteIcon /> }
+ContainedWithIcons.args = {
+  variant: 'contained',
+  color: 'yellow',
+  size: 'large',
+  disabled: false,
+  startIcon: <SendIcon />,
+  endIcon: <DeleteIcon />,
+}
 
 // export const Outlined = Template.bind({})
 // Outlined.args = { variant: 'outlined', color: 'yellow', size: 'large', disabled: false }
@@ -56,4 +69,11 @@ export const TextWithEndIcon = Template.bind({})
 TextWithEndIcon.args = { variant: 'text', color: 'yellow', size: 'large', disabled: false, endIcon: <DeleteIcon /> }
 
 export const TextWithIcons = Template.bind({})
-TextWithIcons.args = { variant: 'text', color: 'yellow', size: 'large', disabled: false, startIcon: <SendIcon />, endIcon: <DeleteIcon /> }
+TextWithIcons.args = {
+  variant: 'text',
+  color: 'yellow',
+  size: 'large',
+  disabled: false,
+  startIcon: <SendIcon />,
+  endIcon: <DeleteIcon />,
+}

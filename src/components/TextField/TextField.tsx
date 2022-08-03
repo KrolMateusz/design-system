@@ -18,13 +18,20 @@ const TextField = ({ startAdornment, endAdornment, onChange, ...props }: TextFie
 
   useEffect(() => {
     onChange(value)
-  }, [ value ])
+  }, [value])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
   }
 
-  return <MuiTextField InputProps={{ startAdornment, endAdornment }} value={value} onChange={handleChange} {...props} />
+  return (
+    <MuiTextField
+      InputProps={{ startAdornment, endAdornment }}
+      value={value}
+      onChange={handleChange}
+      {...props}
+    />
+  )
 }
 
 export default TextField

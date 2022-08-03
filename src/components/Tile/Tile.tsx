@@ -76,6 +76,7 @@ const StyledTileType = styled('div')<Pick<TileProps, 'type'>>(({ theme, type }) 
   textTransform: 'uppercase',
   fontSize: '12px',
   lineHeight: '16px',
+  fontFamily: 'Roboto',
   fontWeight: 700,
   padding: '6px 10px',
   transition: 'all 0.6s cubic-bezier(0.2, 1, 0.25, 1)',
@@ -91,7 +92,7 @@ const StyledTileType = styled('div')<Pick<TileProps, 'type'>>(({ theme, type }) 
 }))
 
 const StyleMuiStack = styled(MuiStack)(({ theme }) => ({
-  gap: theme.spacing(1)
+  gap: theme.spacing(1),
 }))
 
 const Tile = ({ title, description, tags, image, alt, type, icon, ...props }: TileProps) => {

@@ -9,6 +9,7 @@ const StyledTag = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.yellow.main,
   color: theme.palette.primary.main,
   textTransform: 'uppercase',
+  fontFamily: 'Roboto',
   fontSize: '12px',
   lineHeight: '16px',
   fontWeight: 700,

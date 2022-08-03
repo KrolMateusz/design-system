@@ -8,9 +8,9 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-viewport"
   ],
-  "staticDirs": [
-    "./fonts"
-  ]
+  // "staticDirs": [
+  //   "./fonts"
+  // ]
   // "typescript": {
   //   check: false,
   //   checkOptions: {},
