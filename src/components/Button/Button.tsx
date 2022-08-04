@@ -3,7 +3,6 @@ import ButtonBase from '@mui/material/ButtonBase'
 import { styled } from '@mui/material/styles'
 import { Theme } from '@mui/system'
 
-// export type ButtonProps = Pick<MuiButtonProps, 'children' | 'color' | 'variant' | 'size' | 'startIcon' | 'endIcon'>
 export interface ButtonProps {
   /**
    * The content of the component.
