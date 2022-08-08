@@ -23,10 +23,12 @@ export default {
   },
 } as ComponentMeta<typeof Button>
 
-const Template: ComponentStory<typeof Button> = (args: ButtonProps) => <Button {...args}>Large</Button>
+const Template: ComponentStory<typeof Button> = ({ children, ...args }: ButtonProps) => (
+  <Button {...args}>{children}</Button>
+)
 
 export const Contained = Template.bind({})
-Contained.args = { variant: 'contained', color: 'yellow', size: 'large', disabled: false }
+Contained.args = { variant: 'contained', color: 'yellow', size: 'large', disabled: false, children: 'Large' }
 
 export const ContainedWithStartIcon = Template.bind({})
 ContainedWithStartIcon.args = {
@@ -35,6 +37,7 @@ ContainedWithStartIcon.args = {
   size: 'large',
   disabled: false,
   startIcon: <SendIcon />,
+  children: 'Large',
 }
 
 export const ContainedWithEndIcon = Template.bind({})
@@ -44,6 +47,7 @@ ContainedWithEndIcon.args = {
   size: 'large',
   disabled: false,
   endIcon: <DeleteIcon />,
+  children: 'Large',
 }
 
 export const ContainedWithIcons = Template.bind({})
@@ -54,19 +58,90 @@ ContainedWithIcons.args = {
   disabled: false,
   startIcon: <SendIcon />,
   endIcon: <DeleteIcon />,
+  children: 'Large',
 }
 
-// export const Outlined = Template.bind({})
-// Outlined.args = { variant: 'outlined', color: 'yellow', size: 'large', disabled: false }
+export const ContainedDisabledWithIcons = Template.bind({})
+ContainedDisabledWithIcons.args = {
+  variant: 'contained',
+  color: 'yellow',
+  size: 'large',
+  disabled: true,
+  startIcon: <SendIcon />,
+  endIcon: <DeleteIcon />,
+  children: 'Large',
+}
+
+export const Outlined = Template.bind({})
+Outlined.args = { variant: 'outlined', color: 'yellow', size: 'large', disabled: false, children: 'Large' }
+
+export const OutlinedWithStartIcon = Template.bind({})
+OutlinedWithStartIcon.args = {
+  variant: 'outlined',
+  color: 'yellow',
+  size: 'large',
+  disabled: false,
+  startIcon: <SendIcon />,
+  children: 'Large',
+}
+
+export const OutlinedWithEbdIcoon = Template.bind({})
+OutlinedWithEbdIcoon.args = {
+  variant: 'outlined',
+  color: 'yellow',
+  size: 'large',
+  disabled: false,
+  endIcon: <DeleteIcon />,
+  children: 'Large',
+}
+
+export const OutlinedWithIcons = Template.bind({})
+OutlinedWithIcons.args = {
+  variant: 'outlined',
+  color: 'yellow',
+  size: 'large',
+  disabled: false,
+  startIcon: <SendIcon />,
+  endIcon: <DeleteIcon />,
+  children: 'Large',
+}
+
+export const OutlinedDisabled = Template.bind({})
+OutlinedDisabled.args = { variant: 'outlined', color: 'yellow', size: 'large', disabled: true, children: 'Large' }
+
+export const OutlinedDisabledWithIcons = Template.bind({})
+OutlinedDisabledWithIcons.args = {
+  variant: 'outlined',
+  color: 'yellow',
+  size: 'large',
+  disabled: true,
+  startIcon: <SendIcon />,
+  endIcon: <DeleteIcon />,
+  children: 'Large',
+}
 
 export const Text = Template.bind({})
-Text.args = { variant: 'text', color: 'yellow', size: 'large', disabled: false }
+Text.args = { variant: 'text', color: 'yellow', size: 'large', disabled: false, children: 'Large' }
 
 export const TextWithStartIcon = Template.bind({})
-TextWithStartIcon.args = { variant: 'text', color: 'yellow', size: 'large', disabled: false, startIcon: <SendIcon /> }
+TextWithStartIcon.args = {
+  variant: 'text',
+  color: 'yellow',
+  size: 'large',
+  disabled: false,
+  startIcon: <SendIcon />,
+  children: 'Large',
+}
 
 export const TextWithEndIcon = Template.bind({})
-TextWithEndIcon.args = { variant: 'text', color: 'yellow', size: 'large', disabled: false, endIcon: <DeleteIcon /> }
+TextWithEndIcon.args = {
+  variant: 'text',
+  color: 'yellow',
+  size: 'large',
+  disabled: false,
+  endIcon: <DeleteIcon />,
+  children: 'Large',
+}
 
 export const TextWithIcons = Template.bind({})
 TextWithIcons.args = {
@@ -76,4 +151,5 @@ TextWithIcons.args = {
   disabled: false,
   startIcon: <SendIcon />,
   endIcon: <DeleteIcon />,
+  children: 'Large',
 }

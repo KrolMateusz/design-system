@@ -1,0 +1,125 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+
+<Meta
+  title='Foundations/Typography'
+  component={Typography}
+/>
+
+export const Template = (args) => <Typography {...args} />
+
+## Desktop
+
+<Canvas isColumn>
+  <Story
+    name='h1'
+    args={{
+      gutterBottom: true,
+      variant: 'h1',
+      component: 'div',
+      children: 'h1. Almost before we knew it, we had left the ground.',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name='h2'
+    args={{
+      gutterBottom: true,
+      variant: 'h2',
+      component: 'div',
+      children: 'h2. Almost before we knew it, we had left the ground.',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name='h3'
+    args={{
+      gutterBottom: true,
+      variant: 'h3',
+      component: 'div',
+      children: 'h3. Almost before we knew it, we had left the ground.',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name='h4'
+    args={{
+      gutterBottom: true,
+      variant: 'h4',
+      component: 'div',
+      children: 'h4. Almost before we knew it, we had left the ground.',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name='h5'
+    args={{
+      gutterBottom: true,
+      variant: 'h5',
+      component: 'div',
+      children: 'h5. Almost before we knew it, we had left the ground.',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name='h6'
+    args={{
+      gutterBottom: true,
+      variant: 'h6',
+      component: 'div',
+      children: 'h6. Almost before we knew it, we had left the ground.',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name='subtitle1'
+    args={{
+      gutterBottom: true,
+      variant: 'subtitle1',
+      component: 'div',
+      children: 'subtitle1. Almost before we knew it, we had left the ground.',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name='subtitle2'
+    args={{
+      gutterBottom: true,
+      variant: 'subtitle2',
+      component: 'div',
+      children: 'subtitle2. Almost before we knew it, we had left the ground.',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name='body1'
+    args={{
+      gutterBottom: true,
+      variant: 'body1',
+      component: 'div',
+      children: `body1. Almost before we knew it, we had left the ground.`,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name='body2'
+    args={{
+      gutterBottom: true,
+      variant: 'body2',
+      component: 'div',
+      children: `body2. Almost before we knew it, we had left the ground.`,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

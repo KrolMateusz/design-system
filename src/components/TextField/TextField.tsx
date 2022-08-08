@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { styled } from '@mui/material/styles'
 import MuiTextField from '@mui/material/TextField'
 
 export interface TextFieldProps {
@@ -13,6 +14,17 @@ export interface TextFieldProps {
   onChange: (value: string) => void
 }
 
+const StyledTextField = styled(MuiTextField)(({ theme }) => ({
+  borderRadius: 0,
+  '& fieldset': {
+    border: `2px solid ${theme.palette.primary.main}`,
+    borderRadius: 0,
+  },
+  '&.Mui-focused fieldset': {
+    border: `2px solid ${theme.palette.primary.main}`,
+  },
+}))
+
 const TextField = ({ startAdornment, endAdornment, onChange, ...props }: TextFieldProps) => {
   const [value, setValue] = useState<string | undefined>()
 
@@ -25,8 +37,9 @@ const TextField = ({ startAdornment, endAdornment, onChange, ...props }: TextFie
   }
 
   return (
-    <MuiTextField
-      InputProps={{ startAdornment, endAdornment }}
+    <StyledTextField
+      InputLabelProps={{ style: { fontSize: 20 } }}
+      InputProps={{ startAdornment, endAdornment, style: { fontSize: 20 } }}
       value={value}
       onChange={handleChange}
       {...props}

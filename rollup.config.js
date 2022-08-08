@@ -30,8 +30,7 @@ export default {
         extensions: ['.css']
     }),
     url({
-      include: ['**/*.woff'],
-      fileName: '[name].[ext]'
+      include: ['**/*.woff2', '**/*.woff'],
     })
   ]
 };

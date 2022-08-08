@@ -58,9 +58,46 @@ const getBorderColor = (variant: string, color: string, theme: Theme) => {
   return theme.palette[color].main
 }
 
-const getShadow = (theme: Theme, variant: string, color: string) => {
-  if (variant === 'contained') {
-    return {
+const StyledButton = styled(ButtonBase)<ButtonProps>(({ theme, color, size, variant, fullWidth }) => ({
+  ...(fullWidth && {
+    width: '100%',
+  }),
+  ...(size === 'small' && {
+    fontSize: '12px',
+    lineHeight: '22px',
+    padding: `${theme.spacing(0.5, 1.25)}`,
+  }),
+  ...(size === 'medium' && {
+    fontSize: '14px',
+    lineHeight: '24px',
+    padding: `${theme.spacing(1, 2)}`,
+  }),
+  ...(size === 'large' && {
+    fontSize: '16px',
+    lineHeight: '26px',
+    padding: `${theme.spacing(2, 3)}`,
+  }),
+  ...(variant === 'contained' && {
+    backgroundColor: theme.palette[color!].main,
+    color: theme.palette[color!].contrastText,
+    border: `2px solid ${getBorderColor(variant!, color!, theme)}`,
+  }),
+  ...(variant === 'outlined' && {
+    backgroundColor: theme.palette.white.main,
+    border: `2px solid ${getBorderColor(variant!, color!, theme)}`,
+    color: theme.palette[color!].main,
+  }),
+  ...(variant === 'text' && {
+    backgroundColor: 'transparent',
+    color: theme.palette[color!].main,
+  }),
+  fontWeight: 700,
+  textTransform: 'uppercase',
+  position: 'relative',
+  transition: 'transform 0.6s cubic-bezier(0.2, 1, 0.25, 1)',
+  willChange: 'transform',
+  '&::before': {
+    ...(variant === 'contained' && {
       content: '""',
       position: 'absolute',
       transition: 'transform 0.6s cubic-bezier(0.2, 1, 0.25, 1)',
@@ -70,60 +107,32 @@ const getShadow = (theme: Theme, variant: string, color: string) => {
       bottom: -2,
       left: -2,
       boxShadow: theme.elevation.primary.main,
-    }
-  }
-  return {
-    content: '""',
-    position: 'absolute',
-    transition: 'transform 0.6s cubic-bezier(0.2, 1, 0.25, 1)',
-    zIndex: -1,
-    top: 4,
-    left: -8,
-    bottom: -4,
-    width: '100%',
-    height: '100%',
-    backgroundImage: `linear-gradient(${theme.palette[color!].main}, ${
-      theme.palette[color!].main
-    }), linear-gradient(to right, ${theme.palette[color!].main}, ${
-      theme.palette[color!].main
-    }), linear-gradient(to bottom, ${theme.palette[color!].main}, ${
-      theme.palette[color!].main
-    }), linear-gradient(to left, ${theme.palette[color!].main}, ${
-      theme.palette[color!].main
-    }), linear-gradient(transparent, transparent)`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: '2px 100%, 2px 100%, 2px 100%, 2px 100%, calc(100% - 4px) 100%',
-    backgroundPosition: 'left bottom, left bottom, right top, right top, 4px 4px',
-  }
-}
-
-const StyledButton = styled(ButtonBase)<ButtonProps>(({ theme, color, size, variant, fullWidth }) => ({
-  ...(fullWidth && {
-    width: '100%',
-  }),
-  backgroundColor: variant === 'contained' ? theme.palette[color!].main : 'transparent',
-  padding: size === 'large' ? `${theme.spacing(2, 3)}` : size === 'medium' ? `${theme.spacing(1, 2)}` : '4px 10px',
-  fontWeight: 700,
-  textTransform: 'uppercase',
-  color: variant === 'contained' ? theme.palette[color!].contrastText : theme.palette[color!].main,
-  border: variant === 'text' ? '' : `2px solid ${getBorderColor(variant!, color!, theme)}`,
-  position: 'relative',
-  transition: 'transform 0.6s cubic-bezier(0.2, 1, 0.25, 1)',
-  willChange: 'transform',
-  '&::before': variant !== 'text' && getShadow(theme, variant!, color!),
-  '&:hover': variant !== 'text' && {
-    transform: 'translateX(-4px) translateY(4px)',
+    }),
   },
-  '&:hover::before': variant !== 'text' && {
-    transform: 'translateX(2px) translateY(-2px)',
+  '&:hover': {
+    ...(variant !== 'text' && {
+      transform: 'translateX(-3px) translateY(3px)',
+    }),
+  },
+  '&:hover::before': {
+    ...(variant !== 'text' && {
+      transform: 'translateX(2px) translateY(-2px)',
+    }),
   },
   '&:disabled': {
-    backgroundColor: variant !== 'text' && theme.palette.action.disabledBackground,
-    border: variant !== 'text' && `2px solid ${theme.palette.action.disabledBackground}`,
+    ...(variant === 'contained' && {
+      backgroundColor: theme.palette.action.disabledBackground,
+      border: `2px solid ${theme.palette.action.disabledBackground}`,
+    }),
+    ...(variant === 'outlined' && {
+      border: `2px solid ${theme.palette.action.disabledBackground}`,
+    }),
     color: theme.palette.action.disabled,
   },
-  '&:disabled::before': variant !== 'text' && {
-    boxShadow: theme.elevation.disabled.main,
+  '&:disabled::before': {
+    ...(variant === 'contained' && {
+      boxShadow: theme.elevation.disabled.main,
+    }),
   },
 }))
 
@@ -145,12 +154,64 @@ const ButtonStartIcon = styled('span')(({ theme }) => ({
   },
 }))
 
-const Button = ({ children, endIcon: endIconProp, startIcon: startIconProp, onClick, ...props }: ButtonProps) => {
+const ButtonContainer = styled('div')(() => ({
+  position: 'relative',
+}))
+
+const OutlinedShadow = styled('span')(({ theme, color, disabled }) => ({
+  backgroundColor: 'transparent',
+  border: `2px solid ${theme.palette[color!].main}`,
+  position: 'absolute',
+  left: '-4px',
+  right: '4px',
+  bottom: '-4px',
+  top: '4px',
+  zIndex: -1,
+  ...(disabled && {
+    border: `2px solid ${theme.palette.action.disabledBackground}`,
+  }),
+}))
+
+const Button = ({
+  children,
+  endIcon: endIconProp,
+  startIcon: startIconProp,
+  variant,
+  color,
+  disabled,
+  onClick,
+  ...props
+}: ButtonProps) => {
   const endIcon = <ButtonEndIcon>{endIconProp}</ButtonEndIcon>
   const startIcon = <ButtonStartIcon>{startIconProp}</ButtonStartIcon>
 
+  if (variant === 'outlined') {
+    return (
+      <ButtonContainer>
+        <StyledButton
+          color={color}
+          variant={variant}
+          disabled={disabled}
+          onClick={onClick}
+          {...props}
+        >
+          {startIcon}
+          {children}
+          {endIcon}
+        </StyledButton>
+        <OutlinedShadow
+          color={color}
+          disabled={disabled}
+        />
+      </ButtonContainer>
+    )
+  }
+
   return (
     <StyledButton
+      color={color}
+      variant={variant}
+      disabled={disabled}
       onClick={onClick}
       {...props}
     >

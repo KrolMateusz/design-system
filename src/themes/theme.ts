@@ -41,20 +41,20 @@ const elevationMain = '-4px 4px 0px'
 
 const defaultTheme = createTheme()
 let theme = createTheme({
-  // typography: {
-  //   fontFamily: 'TT Commons',
-  // },
+  typography: {
+    fontFamily: 'TT Commons',
+  },
   components: {
-    // MuiCssBaseline: {
-    //   styleOverrides: `
-    //     @font-face {
-    //       font-family: 'TT Commons';
-    //       src: ${TTCommons} format('woff');
-    //       font-weight: 400;
-    //       font-style: normal;
-    //     }
-    //   `,
-    // },
+    MuiCssBaseline: {
+      styleOverrides: `
+        @font-face {
+          font-family: 'TT Commons';
+          src: url('../../public/fonts/TT-Commons-Regular.woff') format('woff');
+          font-weight: 400;
+          font-style: normal;
+        }
+      `,
+    },
     MuiButtonBase: {
       defaultProps: {
         disableRipple: true,
@@ -207,11 +207,118 @@ theme = createTheme(theme, {
 })
 
 theme = createTheme(theme, {
+  typography: {
+    h1: {
+      fontSize: '35px',
+      fontWeight: 700,
+      lineHeight: '34px',
+      letterSpacing: '-0.03em',
+      [theme.breakpoints.up('desktop')]: {
+        fontSize: '72px',
+        lineHeight: '64px',
+      },
+    },
+    h2: {
+      fontSize: '32px',
+      fontWeight: 700,
+      lineHeight: '32px',
+      letterSpacing: '-0.03em',
+      [theme.breakpoints.up('desktop')]: {
+        fontSize: '60px',
+        lineHeight: '60px',
+      },
+    },
+    h3: {
+      fontSize: '28px',
+      fontWeight: 700,
+      lineHeight: '30px',
+      letterSpacing: '-0.03em',
+      [theme.breakpoints.up('desktop')]: {
+        fontSize: '45px',
+        lineHeight: '46px',
+      },
+    },
+    h4: {
+      fontSize: '24px',
+      fontWeight: 700,
+      lineHeight: '26px',
+      letterSpacing: '-0.03em',
+      [theme.breakpoints.up('desktop')]: {
+        fontSize: '38px',
+        lineHeight: '42px',
+      },
+    },
+    h5: {
+      fontSize: '20px',
+      fontWeight: 700,
+      lineHeight: '22px',
+      letterSpacing: '-0.03em',
+      [theme.breakpoints.up('desktop')]: {
+        fontSize: '30px',
+        lineHeight: '28px',
+      },
+    },
+    h6: {
+      fontSize: '18px',
+      fontWeight: 700,
+      lineHeight: '20px',
+      letterSpacing: '-0.03em',
+      [theme.breakpoints.up('desktop')]: {
+        fontSize: '20px',
+        lineHeight: '24px',
+      },
+    },
+    body1: {
+      fontSize: '20px',
+      lineHeight: '24px',
+      [theme.breakpoints.up('desktop')]: {
+        fontSize: '26px',
+        lineHeight: '30px',
+      },
+    },
+    body2: {
+      fontSize: '16px',
+      lineHeight: '20px',
+      [theme.breakpoints.up('desktop')]: {
+        fontSize: '20px',
+        lineHeight: '24px',
+      },
+    },
+    subtitle1: {
+      fontSize: '18px',
+      fontWeight: 700,
+      lineHeight: '20px',
+      [theme.breakpoints.up('desktop')]: {
+        fontSize: '20px',
+        lineHeight: '24px',
+      },
+    },
+    subtitle2: {
+      fontSize: '16px',
+      fontWeight: 700,
+      lineHeight: '18px',
+    },
+    button: {
+      fontSize: '14px',
+      lineHeight: '24px',
+      fontWeight: 700,
+      textTransform: 'uppercase',
+    },
+    caption: {
+      fontSize: '12px',
+      lineHeight: '166%',
+    },
+    overline: {
+      fontSize: '12px',
+      lineHeight: '266%',
+      textTransform: 'uppercase',
+    },
+  },
   components: {
     MuiGrid: {
       styleOverrides: {
         container: ({ theme }) => ({
-          [theme.breakpoints.up('smallMobile')]: {
+          [theme.breakpoints.up('mobileSmall')]: {
             margin: `${theme.spacing(0)} ${theme.spacing(2.5)}`,
           },
           [theme.breakpoints.up('tablet')]: {

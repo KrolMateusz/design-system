@@ -1,16 +1,19 @@
 module.exports = {
-  "stories": [
-    "../src/**/*.stories.tsx"
+  stories: [
+    "../src/**/*.stories.@(ts|tsx|mdx)"
 
   ],
-  "addons": [
+  addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-viewport"
   ],
-  // "staticDirs": [
-  //   "./fonts"
-  // ]
+  staticDirs: [
+    "../public"
+  ],
+  features: {
+     previewMdx2: true,
+  },
   // "typescript": {
   //   check: false,
   //   checkOptions: {},

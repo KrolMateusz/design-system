@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { styled } from '@mui/material/styles'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
@@ -23,6 +24,19 @@ export interface SelectProps {
   icon?: React.ReactNode
   onChange: (value: string | number) => void
 }
+
+const StyledSelect = styled(MuiSelect)(({ theme }) => ({
+  borderRadius: 0,
+  '&.MuiOutlinedInput-root': {
+    '& fieldset': {
+      border: `2px solid ${theme.palette.primary.main}`,
+      minHeight: 0,
+    },
+    '&.Mui-focused fieldset': {
+      border: `2px solid ${theme.palette.primary.main}`,
+    },
+  },
+}))
 
 const Select = ({ label, options, size, disabled, error, helperText, icon, onChange, ...props }: SelectProps) => {
   const [state, setState] = useState('')
@@ -59,7 +73,7 @@ const Select = ({ label, options, size, disabled, error, helperText, icon, onCha
       >
         {label}
       </InputLabel>
-      <MuiSelect
+      <StyledSelect
         {...props}
         {...(icon ? selectIconProps : {})}
         labelId={label}
@@ -74,7 +88,7 @@ const Select = ({ label, options, size, disabled, error, helperText, icon, onCha
             {label}
           </MenuItem>
         ))}
-      </MuiSelect>
+      </StyledSelect>
       {helperText && <MuiFormHelperText>{helperText}</MuiFormHelperText>}
     </FormControl>
   )
