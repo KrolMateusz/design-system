@@ -1,13 +1,22 @@
 import React from 'react'
 import { styled } from '@mui/material/styles'
-import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link'
+import MuiLink from '@mui/material/Link'
 import ArrowForwardSharpIcon from '@mui/icons-material/ArrowForwardSharp'
 
+export interface LinkProps {
+  children: React.ReactNode
+  href: string
+  arrow?: boolean
+  target?: string
+  rel?: string
+}
+
 const StyledLink = styled(MuiLink)({
+  fontFamily: 'TT Commons',
   position: 'relative',
   '&:hover': {
-      cursor: 'pointer'
-  }
+    cursor: 'pointer',
+  },
 })
 
 const StyledArrowForwardSharpIcon = styled(ArrowForwardSharpIcon)(({ theme }) => ({
@@ -15,12 +24,18 @@ const StyledArrowForwardSharpIcon = styled(ArrowForwardSharpIcon)(({ theme }) =>
   fontSize: '0.875em',
   marginLeft: theme.spacing(0.25),
   top: '50%',
-  transform: 'translateY(-50%)'
+  transform: 'translateY(-50%)',
 }))
 
-const Link = ({ children, ...props }: MuiLinkProps) => {
+const Link = ({ children, href, arrow, ...props }: LinkProps) => {
   return (
-    <StyledLink>{ children }<StyledArrowForwardSharpIcon /></StyledLink>
+    <StyledLink
+      {...props}
+      href={href}
+    >
+      {children}
+      {arrow && <StyledArrowForwardSharpIcon />}
+    </StyledLink>
   )
 }
 
