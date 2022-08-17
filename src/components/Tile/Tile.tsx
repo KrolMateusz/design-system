@@ -57,7 +57,7 @@ const StyledMuiCard = styled(MuiCard)(({ theme }) => ({
   overflow: 'visible',
 }))
 
-const StyledMuiCardMedia = styled(MuiCardMedia)(({ theme }) => ({
+const StyledMuiCardMedia = styled(MuiCardMedia)(() => ({
   borderBottom: '3px solid #242424',
 }))
 
@@ -103,7 +103,7 @@ const Tile = ({ title, description, tags, image, alt, type, icon, ...props }: Ti
         sx={{ maxWidth: 450 }}
       >
         <StyledMuiCardMedia
-          component='img'
+          component={'img'}
           image={image}
           alt={alt}
         />

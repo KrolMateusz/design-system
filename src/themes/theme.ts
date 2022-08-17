@@ -1,6 +1,17 @@
 import { createTheme, PaletteColor } from '@mui/material/styles'
 
+const ELEVATIOON_HOVER = '-2px 2px 0px'
+const ELEVATION_MAIN = '-4px 4px 0px'
+
+interface ElevationOption {
+  main: string
+  hover: string
+}
+
 declare module '@mui/material/styles' {
+  interface Theme {
+    elevation: Record<keyof Palette | 'disabled', ElevationOption>
+  }
   interface Palette {
     yellow: PaletteColor
     blue: PaletteColor
@@ -35,9 +46,6 @@ declare module '@mui/material/styles' {
     desktopFull: true
   }
 }
-
-const elevationHover = '-2px 2px 0px'
-const elevationMain = '-4px 4px 0px'
 
 const defaultTheme = createTheme()
 let theme = createTheme({
@@ -173,35 +181,35 @@ let theme = createTheme({
 theme = createTheme(theme, {
   elevation: {
     primary: {
-      main: `${elevationMain} ${theme.palette.primary.main}`,
-      hover: `${elevationHover} ${theme.palette.primary.main}`,
+      main: `${ELEVATION_MAIN} ${theme.palette.primary.main}`,
+      hover: `${ELEVATIOON_HOVER} ${theme.palette.primary.main}`,
     },
     violet: {
-      main: `${elevationMain} ${theme.palette.violet.main}`,
-      hover: `${elevationHover} ${theme.palette.violet.main}`,
+      main: `${ELEVATION_MAIN} ${theme.palette.violet.main}`,
+      hover: `${ELEVATIOON_HOVER} ${theme.palette.violet.main}`,
     },
     blue: {
-      main: `${elevationMain} ${theme.palette.blue.main}`,
-      hover: `${elevationHover} ${theme.palette.blue.main}`,
+      main: `${ELEVATION_MAIN} ${theme.palette.blue.main}`,
+      hover: `${ELEVATIOON_HOVER} ${theme.palette.blue.main}`,
     },
     red: {
-      main: `${elevationMain} ${theme.palette.red.main}`,
-      hover: `${elevationHover} ${theme.palette.red.main}`,
+      main: `${ELEVATION_MAIN} ${theme.palette.red.main}`,
+      hover: `${ELEVATIOON_HOVER} ${theme.palette.red.main}`,
     },
     green: {
-      main: `${elevationMain} ${theme.palette.green.main}`,
-      hover: `${elevationHover} ${theme.palette.green.main}`,
+      main: `${ELEVATION_MAIN} ${theme.palette.green.main}`,
+      hover: `${ELEVATIOON_HOVER} ${theme.palette.green.main}`,
     },
     white: {
-      main: `${elevationMain} ${theme.palette.white.main}`,
-      hover: `${elevationHover} ${theme.palette.white.main}`,
+      main: `${ELEVATION_MAIN} ${theme.palette.white.main}`,
+      hover: `${ELEVATIOON_HOVER} ${theme.palette.white.main}`,
     },
     yellow: {
-      main: `${elevationMain} ${theme.palette.yellow.main}`,
-      hover: `${elevationHover} ${theme.palette.yellow.main}`,
+      main: `${ELEVATION_MAIN} ${theme.palette.yellow.main}`,
+      hover: `${ELEVATIOON_HOVER} ${theme.palette.yellow.main}`,
     },
     disabled: {
-      main: `${elevationMain} ${theme.palette.action.disabled}`,
+      main: `${ELEVATION_MAIN} ${theme.palette.action.disabled}`,
     },
   },
 })
