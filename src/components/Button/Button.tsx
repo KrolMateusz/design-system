@@ -1,7 +1,6 @@
 import React from 'react'
 import ButtonBase from '@mui/material/ButtonBase'
 import { styled } from '@mui/material/styles'
-import { Theme } from '@mui/system'
 
 export interface ButtonProps {
   /**
@@ -48,93 +47,83 @@ export interface ButtonProps {
   onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
-const getBorderColor = (variant: string, color: string, theme: Theme) => {
-  if (variant === 'contained') {
-    if (color === 'primary') {
-      return theme.palette.white.main
-    }
-    return theme.palette.primary.main
-  }
-  return theme.palette[color].main
-}
+type OutlinedShadowProps = Pick<ButtonProps, 'color' | 'disabled'>
 
-const StyledButton = styled(ButtonBase)<ButtonProps>(({ theme, color, size, variant, fullWidth }) => ({
-  ...(fullWidth && {
-    width: '100%',
-  }),
-  ...(size === 'small' && {
-    fontSize: '12px',
-    lineHeight: '22px',
-    padding: `${theme.spacing(0.5, 1.25)}`,
-  }),
-  ...(size === 'medium' && {
-    fontSize: '14px',
-    lineHeight: '24px',
-    padding: `${theme.spacing(1, 2)}`,
-  }),
-  ...(size === 'large' && {
-    fontSize: '16px',
-    lineHeight: '26px',
-    padding: `${theme.spacing(2, 3)}`,
-  }),
-  ...(variant === 'contained' && {
-    backgroundColor: theme.palette[color!].main,
-    color: theme.palette[color!].contrastText,
-    border: `2px solid ${getBorderColor(variant!, color!, theme)}`,
-  }),
-  ...(variant === 'outlined' && {
-    backgroundColor: theme.palette.white.main,
-    border: `2px solid ${getBorderColor(variant!, color!, theme)}`,
-    color: theme.palette[color!].main,
-  }),
-  ...(variant === 'text' && {
-    backgroundColor: 'transparent',
-    color: theme.palette[color!].main,
-  }),
-  fontWeight: 700,
-  textTransform: 'uppercase',
-  position: 'relative',
-  transition: 'transform 0.6s cubic-bezier(0.2, 1, 0.25, 1)',
-  willChange: 'transform',
-  '&::before': {
+const StyledButton = styled(ButtonBase)<ButtonProps>(
+  ({ theme, color = 'yellow', size, variant = 'contained', fullWidth }) => ({
+    fontWeight: 700,
+    textTransform: 'uppercase',
+    position: 'relative',
+    transition: 'transform 0.6s cubic-bezier(0.2, 1, 0.25, 1)',
+    willChange: 'transform',
+    '&:disabled': {
+      color: theme.palette.action.disabled,
+    },
+    ...(fullWidth && {
+      width: '100%',
+    }),
+    ...(size === 'small' && {
+      fontSize: '12px',
+      lineHeight: '22px',
+      padding: `${theme.spacing(0.5, 1.25)}`,
+    }),
+    ...(size === 'medium' && {
+      fontSize: '14px',
+      lineHeight: '24px',
+      padding: `${theme.spacing(1, 2)}`,
+    }),
+    ...(size === 'large' && {
+      fontSize: '16px',
+      lineHeight: '26px',
+      padding: `${theme.spacing(2, 3)}`,
+    }),
     ...(variant === 'contained' && {
-      content: '""',
-      position: 'absolute',
-      transition: 'transform 0.6s cubic-bezier(0.2, 1, 0.25, 1)',
-      zIndex: -1,
-      top: -2,
-      right: -2,
-      bottom: -2,
-      left: -2,
-      boxShadow: theme.elevation.primary.main,
-    }),
-  },
-  '&:hover': {
-    ...(variant !== 'text' && {
-      transform: 'translateX(-3px) translateY(3px)',
-    }),
-  },
-  '&:hover::before': {
-    ...(variant !== 'text' && {
-      transform: 'translateX(2px) translateY(-2px)',
-    }),
-  },
-  '&:disabled': {
-    ...(variant === 'contained' && {
-      backgroundColor: theme.palette.action.disabledBackground,
-      border: `2px solid ${theme.palette.action.disabledBackground}`,
+      backgroundColor: theme.palette[color].main,
+      color: theme.palette[color].contrastText,
+      border: `2px solid ${color === 'primary' ? theme.palette.white.main : theme.palette.primary.main}`,
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        transition: 'transform 0.6s cubic-bezier(0.2, 1, 0.25, 1)',
+        zIndex: -1,
+        top: -2,
+        right: -2,
+        bottom: -2,
+        left: -2,
+        boxShadow: theme.elevation.primary.main,
+      },
+      '&:disabled': {
+        backgroundColor: theme.palette.action.disabledBackground,
+        border: `2px solid ${theme.palette.action.disabledBackground}`,
+      },
+      '&:disabled::before': {
+        boxShadow: theme.elevation.disabled.main,
+      },
     }),
     ...(variant === 'outlined' && {
-      border: `2px solid ${theme.palette.action.disabledBackground}`,
+      backgroundColor: theme.palette.white.main,
+      border: `2px solid ${theme.palette[color].main}`,
+      color: theme.palette[color].main,
+      '&:disabled': {
+        border: `2px solid ${theme.palette.action.disabledBackground}`,
+      },
     }),
-    color: theme.palette.action.disabled,
-  },
-  '&:disabled::before': {
-    ...(variant === 'contained' && {
-      boxShadow: theme.elevation.disabled.main,
+    ...(variant === 'text' && {
+      backgroundColor: 'transparent',
+      color: theme.palette[color].main,
     }),
-  },
-}))
+    '&:hover': {
+      ...(variant !== 'text' && {
+        transform: 'translateX(-3px) translateY(3px)',
+      }),
+    },
+    '&:hover::before': {
+      ...(variant !== 'text' && {
+        transform: 'translateX(2px) translateY(-2px)',
+      }),
+    },
+  }),
+)
 
 const ButtonEndIcon = styled('span')(({ theme }) => ({
   display: 'inherit',
@@ -158,9 +147,9 @@ const ButtonContainer = styled('div')(() => ({
   position: 'relative',
 }))
 
-const OutlinedShadow = styled('span')(({ theme, color, disabled }) => ({
+const OutlinedShadow = styled('span')<OutlinedShadowProps>(({ theme, color = 'yellow', disabled }) => ({
   backgroundColor: 'transparent',
-  border: `2px solid ${theme.palette[color!].main}`,
+  border: `2px solid ${theme.palette[color].main}`,
   position: 'absolute',
   left: '-4px',
   right: '4px',
